@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<!-- saved from url=(0081)https://html-plus.in.ua/wp-content/uploads/js-examples/events/DOM-small-game.html -->
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="HTML+ - Создаем эффекты при наведении мыши с помощью событий mouseover и mouseout и методов создания элементов DOM">
+    <title>HTML+ - Эффекты при наведении в DOM</title>
+    <link rel="icon" href="https://html-plus.in.ua/wp-content/uploads/2018/10/cropped-favicon1-32x32.png" sizes="32x32">
+    <link rel="icon" href="https://html-plus.in.ua/wp-content/uploads/2018/10/cropped-favicon1-192x192.png"
+        sizes="192x192">
+    <link rel="apple-touch-icon" href="https://html-plus.in.ua/wp-content/uploads/2018/10/cropped-favicon1-180x180.png">
+    <meta name="msapplication-TileImage"
+        content="https://html-plus.in.ua/wp-content/uploads/2018/10/cropped-favicon1-270x270.png">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: sans-serif;
+            background-color: #111;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+            margin: 0;
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+
+        .inner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 600px;
+            padding: 15px;
+        }
+
+        .square {
+            background-color: #2d2d2d;
+            box-shadow: 0 0 2px #000;
+            height: 16px;
+            width: 16px;
+            margin: 2px;
+            transition: 2s ease;
+        }
+
+        .square:hover {
+            transition-duration: 0s;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="inner">
+        <h1>Эффекты при наведении мыши с помощью событий mouseover и mouseout и методов создания элементов DOM</h1>
+    </div>
+    <script>
+        const inner = document.querySelector('.inner');
+        const squareColors = ['#ed220d', '#b542e5', '#0d93ed', '#f2770b', '#8affbc', '#f2ff8a', '#ff38c2', '#e37f35'];
+        const BLOCKS = 672;
+
+        for (let i = 0; i < BLOCKS; i++) {
+            const square = document.createElement('div');
+            square.classList.add('square');
+
+            square.addEventListener('mouseover', () => setColor(square));
+
+            square.addEventListener('mouseout', () => removeColor(square));
+
+            inner.appendChild(square)
+        }
+
+        function setColor(elem) {
+            const color = getRandomColor();
+            elem.style.background = color;
+            elem.style.boxShadow = `0 0 12px ${color}`;
+        }
+
+        function removeColor(elem) {
+            elem.style.background = '#2d2d2d';
+            elem.style.boxShadow = '0 0 4px #000';
+        }
+
+        const getRandomColor = () => squareColors[Math.floor(Math.random() * squareColors.length)];
+
+    </script>
+
+
+
+</body>
+
+</html>
